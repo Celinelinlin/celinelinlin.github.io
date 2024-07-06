@@ -8,5 +8,19 @@
 
     <body>
         <p>歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
+        
+        <form action="/submit" method="post">
+            <label for="mood">請選擇您今天的情緒：</label>
+            <select name="mood" id="mood">
+                <option value="非常開心">非常開心</option>
+                <option value="開心">開心</option>
+                <option value="普通">普通</option>
+                <option value="不開心">不開心</option>
+                <option value="非常不開心">非常不開心</option>
+            </select>
+            <br><br>
+            <input type="submit" value="提交">
+        </form>
+        
     </body>
 </html>
