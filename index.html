@@ -1,18 +1,83 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>情緒日記</title>
-        <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    </head>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>情緒日記</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        label {
+            margin-left: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .description {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>情緒日記</h1>
+        <p class="description">歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
 
-    <body>
-        <p>歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
-        
         <form action="/submit" method="post">
-            <table border="1">
+            <table>
                 <tr>
-                    <th colspan="6">你覺得今天是怎麼樣的一天</th>
+                    <th colspan="5">你覺得今天是怎麼樣的一天</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_good" name="day" value="非常好"><label for="very_good">非常好</label></td>
@@ -22,7 +87,7 @@
                     <td><input type="radio" id="very_bad" name="day" value="非常糟"><label for="very_bad">非常糟</label></td>
                 </tr>
                 <tr>
-                    <th colspan="6">開心指數</th>
+                    <th colspan="5">開心指數</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_happy" name="mood_happy" value="超級開心"><label for="very_happy">超級開心</label></td>
@@ -32,7 +97,7 @@
                     <td><input type="radio" id="very_unhappy" name="mood_happy" value="非常不開心"><label for="very_unhappy">非常不開心</label></td>
                 </tr>
                 <tr>
-                    <th colspan="6">焦慮指數</th>
+                    <th colspan="5">焦慮指數</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_anxiety" name="mood_anxiety" value="超級焦慮"><label for="very_anxiety">超級焦慮</label></td>
@@ -42,7 +107,7 @@
                     <td><input type="radio" id="very_unanxiety" name="mood_anxiety" value="超級不焦慮"><label for="very_unanxiety">超級不焦慮</label></td>
                 </tr>
                 <tr>
-                    <th colspan="6">生氣指數</th>
+                    <th colspan="5">生氣指數</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_angry" name="mood_angry" value="超級生氣"><label for="very_angry">超級生氣</label></td>
@@ -52,7 +117,7 @@
                     <td><input type="radio" id="very_unangry" name="mood_angry" value="非常不生氣"><label for="very_unangry">非常不生氣</label></td>
                 </tr>
                 <tr>
-                    <th colspan="6">討厭指數</th>
+                    <th colspan="5">討厭指數</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_hate" name="mood_hate" value="超級討厭"><label for="very_hate">超級討厭</label></td>
@@ -62,7 +127,7 @@
                     <td><input type="radio" id="very_unhate" name="mood_hate" value="非常不討厭"><label for="very_unhate">非常不討厭</label></td>
                 </tr>
                 <tr>
-                    <th colspan="6">驚嚇指數</th>
+                    <th colspan="5">驚嚇指數</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_scared" name="mood_scared" value="超級驚嚇"><label for="very_scared">超級驚嚇</label></td>
@@ -75,6 +140,6 @@
             <br>
             <input type="submit" value="提交">
         </form>
-        
-    </body>
+    </div>
+</body>
 </html>
