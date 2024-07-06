@@ -7,18 +7,23 @@
     </head>
 
     <body>
+        <p>大家好!你今天過的怎麼樣呢?</p>
         <p>歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
         
         <form action="/submit" method="post">
-            <label for="mood">請選擇您今天的情緒：</label>
-            <select name="mood" id="mood">
-                <option value="非常開心">非常開心</option>
-                <option value="開心">開心</option>
-                <option value="普通">普通</option>
-                <option value="不開心">不開心</option>
-                <option value="非常不開心">非常不開心</option>
-            </select>
-            <br><br>
+           <label for="mood">你覺得今天是怎麼樣的一天：</label>
+            <br>
+            <input type="radio" id="very_good" name="mood" value="非常好">
+            <label for="very_happy">非常好</label><br>
+            <input type="radio" id="good" name="mood" value="良好">
+            <label for="very_happy">良好</label><br>
+            <input type="radio" id="neutral" name="mood" value="普通">
+            <label for="neutral">普通</label><br>
+            <input type="radio" id="bad" name="mood" value="糟糕">
+            <label for="very_unhappy">糟糕</label><br>
+            <input type="radio" id="very_bad" name="mood" value="非常糟">
+            <label for="very_unhappy">非常糟</label><br><br>
+            
             <input type="submit" value="提交">
         </form>
         
