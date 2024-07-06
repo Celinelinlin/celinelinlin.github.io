@@ -7,7 +7,6 @@
     </head>
 
     <body>
-        <p>大家好!你今天過的怎麼樣呢?</p>
         <p>歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
         
         <form action="/submit" method="post">
@@ -32,7 +31,8 @@
                     <td><input type="radio" id="unhappy" name="mood_happy" value="有點不開心"><label for="unhappy">有點不開心</label></td>
                     <td><input type="radio" id="very_unhappy" name="mood_happy" value="非常不開心"><label for="very_unhappy">非常不開心</label></td>
                 </tr>
-                <th colspan="6">焦慮指數</th>
+                <tr>
+                    <th colspan="6">焦慮指數</th>
                 </tr>
                 <tr>
                     <td><input type="radio" id="very_anxiety" name="mood_anxiety" value="超級焦慮"><label for="very_anxiety">超級焦慮</label></td>
@@ -40,6 +40,36 @@
                     <td><input type="radio" id="neutral_anxiety" name="mood_anxiety" value="普通"><label for="neutral_anxiety">普通</label></td>
                     <td><input type="radio" id="unanxiety" name="mood_anxiety" value="不焦慮"><label for="unanxiety">不焦慮</label></td>
                     <td><input type="radio" id="very_unanxiety" name="mood_anxiety" value="超級不焦慮"><label for="very_unanxiety">超級不焦慮</label></td>
+                </tr>
+                <tr>
+                    <th colspan="6">生氣指數</th>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="very_angry" name="mood_angry" value="超級生氣"><label for="very_angry">超級生氣</label></td>
+                    <td><input type="radio" id="angry" name="mood_angry" value="生氣"><label for="angry">生氣</label></td>
+                    <td><input type="radio" id="neutral_angry" name="mood_angry" value="普通"><label for="neutral_angry">普通</label></td>
+                    <td><input type="radio" id="unanxiety_angry" name="mood_angry" value="不生氣"><label for="unanxiety_angry">不生氣</label></td>
+                    <td><input type="radio" id="very_unangry" name="mood_angry" value="非常不生氣"><label for="very_unangry">非常不生氣</label></td>
+                </tr>
+                <tr>
+                    <th colspan="6">討厭指數</th>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="very_hate" name="mood_hate" value="超級討厭"><label for="very_hate">超級討厭</label></td>
+                    <td><input type="radio" id="hate" name="mood_hate" value="討厭"><label for="hate">討厭</label></td>
+                    <td><input type="radio" id="neutral_hate" name="mood_hate" value="普通"><label for="neutral_hate">普通</label></td>
+                    <td><input type="radio" id="unhate" name="mood_hate" value="不討厭"><label for="unhate">不討厭</label></td>
+                    <td><input type="radio" id="very_unhate" name="mood_hate" value="非常不討厭"><label for="very_unhate">非常不討厭</label></td>
+                </tr>
+                <tr>
+                    <th colspan="6">驚嚇指數</th>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="very_scared" name="mood_scared" value="超級驚嚇"><label for="very_scared">超級驚嚇</label></td>
+                    <td><input type="radio" id="scared" name="mood_scared" value="驚嚇"><label for="scared">驚嚇</label></td>
+                    <td><input type="radio" id="neutral_scared" name="mood_scared" value="普通"><label for="neutral_scared">普通</label></td>
+                    <td><input type="radio" id="unscared" name="mood_scared" value="不驚嚇"><label for="unscared">不驚嚇</label></td>
+                    <td><input type="radio" id="very_unscared" name="mood_scared" value="非常不驚嚇"><label for="very_unscared">非常不驚嚇</label></td>
                 </tr>
             </table>
             <br>
