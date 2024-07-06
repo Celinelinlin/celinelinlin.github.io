@@ -32,7 +32,7 @@
         }
         table {
             width: 100%;
-            border-collapse: collapse; /* 確保表格邊框折疊 */
+            border-collapse: collapse;
             margin: 20px 0;
         }
         th, td {
@@ -42,7 +42,7 @@
         th {
             background-color: #deb887; 
             color: white;
-            text-align: left; /* 將文字置於最左邊 */
+            text-align: left;
         }
         tr:nth-child(even) {
             background-color: #fffaf0;
@@ -70,6 +70,26 @@
             font-size: 16px;
             margin-bottom: 20px;
         }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 100px;
+        }
+        #character-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #character-image {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -78,7 +98,7 @@
         <h1>情緒日記</h1>
         <p class="description">歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
 
-        <form action="/submit" method="post">
+        <form id="emotion-form">
             <table>
                 <tr>
                     <th>你覺得今天是怎麼樣的一天</th>
@@ -122,16 +142,183 @@
                 </tr>
                 <tr>
                     <th>驚嚇指數</th>
-                    <td><input type="radio" id="very_scared" name="mood_scared" value="超級驚嚇"><label for="very_scared">超級驚嚇</label></td>
-                    <td><input type="radio" id="scared" name="mood_scared" value="驚嚇"><label for="scared">驚嚇</label></td>
+                    <td><input type="radio" id="very_scared" name="mood_scared" value="超級害怕"><label for="very_scared">超級害怕</label></td>
+                    <td><input type="radio" id="scared" name="mood_scared" value="害怕"><label for="scared">害怕</label></td>
                     <td><input type="radio" id="neutral_scared" name="mood_scared" value="普通"><label for="neutral_scared">普通</label></td>
-                    <td><input type="radio" id="unscared" name="mood_scared" value="不驚嚇"><label for="unscared">不驚嚇</label></td>
-                    <td><input type="radio" id="very_unscared" name="mood_scared" value="非常不驚嚇"><label for="very_unscared">非常不驚嚇</label></td>
+                    <td><input type="radio" id="unscared" name="mood_scared" value="不害怕"><label for="unscared">不害怕</label></td>
+                    <td><input type="radio" id="very_unscared" name="mood_scared" value="非常不害怕"><label for="very_unscared">非常不害怕</label></td>
                 </tr>
             </table>
-            <br>
+
+            <label for="comments">說說話~</label>
+            <textarea id="comments" name="comments" placeholder="寫下你的感受和想法..."></textarea>
+            <br><br>
+
             <input type="submit" value="提交">
         </form>
+
+        <div id="character-info" style="display: none;">
+            <h2 id="character-name"></h2>
+            <img id="character-image" src="" alt="">
+            <p id="character-description"></p>
+        </div>
     </div>
+
+    <script>
+        const form = document.getElementById('emotion-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const dayValue = getRadioValue('day');
+            const moodHappyValue = getRadioValue('mood_happy');
+            const moodAnxietyValue = getRadioValue('mood_anxiety');
+            const moodAngryValue = getRadioValue('mood_angry');
+            const moodHateValue = getRadioValue('mood_hate');
+            const moodScaredValue = getRadioValue('mood_scared');
+
+            const comments = document.getElementById('comments').value;
+
+            const totalScore = calculateTotalScore(dayValue, moodHappyValue, moodAnxietyValue, moodAngryValue, moodHateValue, moodScaredValue);
+
+            const characterInfo = getCharacterInfo(totalScore);
+
+            displayCharacterInfo(characterInfo);
+        });
+
+        function getRadioValue(name) {
+            const radios = document.getElementsByName(name);
+            for (const radio of radios) {
+                if (radio.checked) {
+                    return radio.value;
+                }
+            }
+            return null;
+        }
+
+        function calculateTotalScore(day, happy, anxiety, angry, hate, scared) {
+            let totalScore = 0;
+            totalScore += getScoreFromValue(day);
+            totalScore += getScoreFromValue(happy);
+            totalScore += getScoreFromValue(anxiety);
+            totalScore += getScoreFromValue(angry);
+            totalScore += getScoreFromValue(hate);
+            totalScore += getScoreFromValue(scared);
+            return totalScore;
+        }
+
+        function getScoreFromValue(value) {
+            switch (value) {
+                case '非常好':
+                    return 5;
+                case '良好':
+                    return 4;
+                case '普通':
+                    return 3;
+                case '糟糕':
+                    return 2;
+                case '非常糟':
+                    return 1;
+                case '超級開心':
+                    return 5;
+                case '有點開心':
+                    return 4;
+                case '有點不開心':
+                    return 2;
+                case '非常不開心':
+                    return 1;
+                case '超級焦慮':
+                    return 5;
+                case '有點焦慮':
+                    return 4;
+                case '普通':
+                    return 3;
+                case '不焦慮':
+                    return 2;
+                case '超級不焦慮':
+                    return 1;
+                case '超級生氣':
+                    return 5;
+                case '生氣':
+                    return 4;
+                case '普通':
+                    return 3;
+                case '不生氣':
+                    return 2;
+                case '非常不生氣':
+                    return 1;
+                case '超級討厭':
+                    return 5;
+                case '討厭':
+                    return 4;
+                case '普通':
+                    return 3;
+                case '不討厭':
+                    return 2;
+                case '非常不討厭':
+                    return 1;
+                case '超級害怕':
+                    return 5;
+                case '害怕':
+                    return 4;
+                case '普通':
+                    return 3;
+                case '不害怕':
+                    return 2;
+                case '非常不害怕':
+                    return 1;
+                default:
+                    return 0;
+            }
+        }
+
+        
+        function getCharacterInfo(totalScore) {
+            if (totalScore >= 20) {
+                return {
+                    name: 'Joy (樂樂)',
+                    image: 'img/joy.jpg',
+                    description: '今天的你是樂樂，樂觀面對一切!'
+                };
+            } else if (totalScore >= 15) {
+                return {
+                    name: 'Sadness (憂憂)',
+                    image: 'img/sadness.jpg',
+                    description: '今天的你是憂憂，想法悲觀，所有的事情似乎都是悲傷的，但是別擔心，相信明天都會好起來的!'
+                };
+            } else if (totalScore >= 10) {
+                return {
+                    name: 'Anger (怒怒)',
+                    image: 'img/anger.jpg',
+                    description: '今天的你是怒怒，暴躁易怒，試著多告訴自己冷靜下來吧!'
+                };
+            } else if (totalScore >= 5) {
+                return {
+                    name: 'Fear (驚驚)',
+                    image: 'img/fear.jpg',
+                    description: '今天的你是驚驚，謹慎小心且膽小，試著放鬆吧～'
+                };
+            } else {
+                return {
+                    name: 'Disgust (厭厭)',
+                    image: 'img/disgust.jpg',
+                    description: '今天的你是厭厭，盡力的避開感到厭惡的事物！'
+                };
+            }
+        }
+
+        function displayCharacterInfo(characterInfo) {
+            const characterName = document.getElementById('character-name');
+            const characterImage = document.getElementById('character-image');
+            const characterDescription = document.getElementById('character-description');
+
+            characterName.textContent = characterInfo.name;
+            characterImage.src = characterInfo.image;
+            characterDescription.textContent = characterInfo.description;
+
+            const characterInfoDiv = document.getElementById('character-info');
+            characterInfoDiv.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
