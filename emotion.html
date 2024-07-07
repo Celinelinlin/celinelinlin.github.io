@@ -119,11 +119,11 @@
 
         function showEmotion(emotion) {
             const emotionData = emotions[emotion];
-            document.getElementById('emotion-description').innerHTML = 
+            document.getElementById('emotion-description').innerHTML = `
                 <h2>${emotionData.name}</h2>
                 <img src="${emotionData.image}" alt="${emotionData.name}" width="100">
                 <p>${emotionData.description}</p>
-            ;
+            `;
         }
 
         // Initialize LIFF
