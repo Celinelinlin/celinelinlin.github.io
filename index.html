@@ -1,304 +1,302 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>情緒日記</title>
-        <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
-        <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                background-image: url('background.jpg');
-                background-size: cover;
-                background-position: center;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-            }
-            .container {
-                background-color: rgba(255, 255, 255, 0.8); 
-                border-radius: 10px;
-                box-shadow: 0 0 20px rgba(0,0,0,0.1);
-                padding: 20px;
-                max-width: 800px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            h1 {
-                text-align: center;
-                color: #8b4513; 
-            }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin: 20px 0;
-            }
-            th, td {
-                padding: 8px;
-                text-align: center;
-            }
-            th {
-                background-color: #deb887; 
-                color: white;
-                text-align: left;
-                width: 100px;
-            }
-            tr:nth-child(even) {
-                background-color: #fffaf0;
-            }
-            label {
-                margin-left: 5px;
-            }
-            input[type="submit"] {
-                background-color: #d2b48c; 
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                display: block;
-                width: 100%;
-                font-size: 16px;
-            }
-            input[type="submit"]:hover {
-                background-color: #c19a6b; 
-            }
-            .description {
-                text-align: center;
-                color: #8b4513;
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-            textarea {
-                width: 100%;
-                padding: 8px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-                box-sizing: border-box;
-                resize: vertical;
-                min-height: 100px;
-            }
-            #character-info {
-                text-align: center;
-                margin-top: 20px;
-            }
-            #character-image {
-                max-width: 300px;
-                height: auto;
-                margin-bottom: 10px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            }
-            table {
-                width: 100%;
-            }
-            th {
-                width: 30%;
-                text-align: left;
-                padding-right: 20px;
-            }
-            .slider-container {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .slider-container span {
-                flex: 0 0 auto;
-            }
-            .slider-container input[type="range"] {
-                -webkit-appearance: none;
-                width: 300px;
-                height: 10px;
-                border-radius: 5px;
-                background: #d3d3d3; 
-                outline: none;
-                opacity: 0.7;
-                -webkit-transition: .2s;
-                transition: opacity .2s;
-            }
-            .slider-container input[type="range"]::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background: #dc9264;
-                cursor: pointer;
-            }
-            .slider-container input[type="range"]::-moz-range-thumb {
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background: #dc9264;  
-                cursor: pointer;
-            }
-            .date-container {
-                text-align: center;
-                margin-bottom: 10px;
-            }
-            #current-date {
-                color: #8b4513;
-                font-size: 18px;
-            }
-        </style>
-    </head>
-    <body>
-        <br><br><br>
-        <div class="container">
-            <h1>情緒日記</h1>
-            <div class="date-container">
-                <span id="current-date"></span>
-            </div>
-            <p class="description">歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
-
-
-            <form id="emotion-form">
-                <table>
-                    <tr>
-                        <th>你覺得今天是怎麼樣的一天</th>
-                        <td class="slider-container">
-                        <span>非常糟糕</span>
-                        <input type="range" id="day" name="day" min="1" max="5" step="1">
-                        <span>非常好</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>開心指數</th>
-                        <td class="slider-container">
-                        <span>非常不開心</span>
-                        <input type="range" id="mood_happy" name="mood_happy" min="1" max="5" step="1">
-                        <span>超級開心</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>焦慮指數</th>
-                        <td class="slider-container">
-                        <span>超級不焦慮</span>
-                        <input type="range" id="mood_anxiety" name="mood_anxiety" min="1" max="5" step="1">
-                        <span>超級焦慮</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>生氣指數</th>
-                        <td class="slider-container">
-                        <span>非常不生氣</span>
-                        <input type="range" id="mood_angry" name="mood_angry" min="1" max="5" step="1">
-                        <span>超級生氣</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>討厭指數</th>
-                        <td class="slider-container">
-                        <span>非常不討厭</span>
-                        <input type="range" id="mood_hate" name="mood_hate" min="1" max="5" step="1">
-                        <span>超級討厭</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>驚嚇指數</th>
-                        <td class="slider-container">
-                        <span>非常不害怕</span>
-                        <input type="range" id="mood_scared" name="mood_scared" min="1" max="5" step="1">
-                        <span>超級害怕</span>
-                        </td>
-                    </tr>
-                </table>
-
-                <label for="comments">說說話~</label>
-                <textarea id="comments" name="comments" placeholder="寫下你的感受和想法..."></textarea>
-                <br><br>
-
-                <input type="submit" value="提交">
-            </form>
-
-            <div id="character-info" style="display: none;">
-                <h2 id="character-name"></h2>
-                <img id="character-image" src="" alt="">
-                <p id="character-description"></p>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情緒日記</title>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #8b4513; 
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #deb887; 
+            color: white;
+            text-align: left;
+            width: 100px;
+        }
+        tr:nth-child(even) {
+            background-color: #fffaf0;
+        }
+        label {
+            margin-left: 5px;
+        }
+        input[type="submit"] {
+            background-color: #d2b48c; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #c19a6b; 
+        }
+        .description {
+            text-align: center;
+            color: #8b4513;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 100px;
+        }
+        #character-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #character-image {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+        }
+        th {
+            width: 30%;
+            text-align: left;
+            padding-right: 20px;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .slider-container span {
+            flex: 0 0 auto;
+        }
+        .slider-container input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #d3d3d3; 
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #dc9264;
+            cursor: pointer;
+        }
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #dc9264;  
+            cursor: pointer;
+        }
+        .date-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #current-date {
+            color: #8b4513;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>情緒日記</h1>
+        <div class="date-container">
+            <span id="current-date"></span>
         </div>
+        <p class="description">歡迎來到情緒日記，可以在這邊紀錄每天的情緒喔~</p>
 
-        <script>
-            const form = document.getElementById('emotion-form');
-            const currentDateSpan = document.getElementById('current-date');
+        <form id="emotion-form">
+            <table>
+                <tr>
+                    <th>你覺得今天是怎麼樣的一天</th>
+                    <td class="slider-container">
+                    <span>非常糟糕</span>
+                    <input type="range" id="day" name="day" min="1" max="5" step="1">
+                    <span>非常好</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>開心指數</th>
+                    <td class="slider-container">
+                    <span>非常不開心</span>
+                    <input type="range" id="mood_happy" name="mood_happy" min="1" max="5" step="1">
+                    <span>超級開心</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>焦慮指數</th>
+                    <td class="slider-container">
+                    <span>超級不焦慮</span>
+                    <input type="range" id="mood_anxiety" name="mood_anxiety" min="1" max="5" step="1">
+                    <span>超級焦慮</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>生氣指數</th>
+                    <td class="slider-container">
+                    <span>非常不生氣</span>
+                    <input type="range" id="mood_angry" name="mood_angry" min="1" max="5" step="1">
+                    <span>超級生氣</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>討厭指數</th>
+                    <td class="slider-container">
+                    <span>非常不討厭</span>
+                    <input type="range" id="mood_hate" name="mood_hate" min="1" max="5" step="1">
+                    <span>超級討厭</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>驚嚇指數</th>
+                    <td class="slider-container">
+                    <span>非常不害怕</span>
+                    <input type="range" id="mood_scared" name="mood_scared" min="1" max="5" step="1">
+                    <span>超級害怕</span>
+                    </td>
+                </tr>
+            </table>
 
-            const currentDate = new Date();
-            const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
-            currentDateSpan.textContent = formattedDate;
+            <label for="comments">說說話~</label>
+            <textarea id="comments" name="comments" placeholder="寫下你的感受和想法..."></textarea>
+            <br><br>
 
-            form.addEventListener('submit', function(event) {
-                event.preventDefault(); 
+            <input type="submit" value="提交">
+        </form>
 
-                const dayValue = document.getElementById('day').value;
-                const moodHappyValue = document.getElementById('mood_happy').value;
-                const moodAnxietyValue = document.getElementById('mood_anxiety').value;
-                const moodAngryValue = document.getElementById('mood_angry').value;
-                const moodHateValue = document.getElementById('mood_hate').value;
-                const moodScaredValue = document.getElementById('mood_scared').value;
+        <div id="character-info" style="display: none;">
+            <h2 id="character-name"></h2>
+            <img id="character-image" src="" alt="">
+            <p id="character-description"></p>
+        </div>
+    </div>
 
-                const comments = document.getElementById('comments').value;
+    <script>
+        const form = document.getElementById('emotion-form');
+        const currentDateSpan = document.getElementById('current-date');
 
-                const totalScore = calculateTotalScore(dayValue, moodHappyValue, moodAnxietyValue, moodAngryValue, moodHateValue, moodScaredValue);
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+        currentDateSpan.textContent = formattedDate;
 
-                const characterInfo = getCharacterInfo(totalScore);
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
 
-                displayCharacterInfo(characterInfo);
-            });
+            const dayValue = document.getElementById('day').value;
+            const moodHappyValue = document.getElementById('mood_happy').value;
+            const moodAnxietyValue = document.getElementById('mood_anxiety').value;
+            const moodAngryValue = document.getElementById('mood_angry').value;
+            const moodHateValue = document.getElementById('mood_hate').value;
+            const moodScaredValue = document.getElementById('mood_scared').value;
 
-            function calculateTotalScore(day, happy, anxiety, angry, hate, scared) {
-                let totalScore = parseInt(day) + parseInt(happy) + parseInt(anxiety) + parseInt(angry) + parseInt(hate) + parseInt(scared);
-                return totalScore;
+            const comments = document.getElementById('comments').value;
+
+            const totalScore = calculateTotalScore(dayValue, moodHappyValue, moodAnxietyValue, moodAngryValue, moodHateValue, moodScaredValue);
+
+            const characterInfo = getCharacterInfo(totalScore);
+
+            displayCharacterInfo(characterInfo);
+        });
+
+        function calculateTotalScore(day, happy, anxiety, angry, hate, scared) {
+            let totalScore = parseInt(day) + parseInt(happy) + parseInt(anxiety) + parseInt(angry) + parseInt(hate) + parseInt(scared);
+            return totalScore;
+        }
+
+        function getCharacterInfo(totalScore) {
+            if (totalScore >= 25) {
+                return {
+                    name: 'Joy (樂樂)',
+                    image: 'joy.png',
+                    description: '今天的你是樂樂，充滿喜悅和樂觀!'
+                };
+            } else if (totalScore >= 20) {
+                return {
+                    name: 'Sadness (憂憂)',
+                    image: 'sadness.png',
+                    description: '今天的你是憂憂，感受到一些悲傷，不過不要擔心，一切都會好轉的!'
+                };
+            } else if (totalScore >= 15) {
+                return {
+                    name: 'Anger (怒怒)',
+                    image: 'anger.png',
+                    description: '今天的你是怒怒，有些憤怒和火氣，嘗試冷靜一下吧!'
+                };
+            } else if (totalScore >= 10) {
+                return {
+                    name: 'Fear (驚驚)',
+                    image: 'fear.png',
+                    description: '今天的你是驚驚，感到害怕和不安，試著放鬆一些～'
+                };
+            } else {
+                return {
+                    name: 'Disgust (厭厭)',
+                    image: 'disgust.png',
+                    description: '今天的你是厭厭，對一些事情感到厭惡，盡量避開吧！'
+                };
             }
+        }
 
-            function getCharacterInfo(totalScore) {
-                if (totalScore >= 25) {
-                    return {
-                        name: 'Joy (樂樂)',
-                        image: 'joy.png',
-                        description: '今天的你是樂樂，充滿喜悅和樂觀!'
-                    };
-                } else if (totalScore >= 20) {
-                    return {
-                        name: 'Sadness (憂憂)',
-                        image: 'sadness.png',
-                        description: '今天的你是憂憂，感受到一些悲傷，不過不要擔心，一切都會好轉的!'
-                    };
-                } else if (totalScore >= 15) {
-                    return {
-                        name: 'Anger (怒怒)',
-                        image: 'anger.png',
-                        description: '今天的你是怒怒，有些憤怒和火氣，嘗試冷靜一下吧!'
-                    };
-                } else if (totalScore >= 10) {
-                    return {
-                        name: 'Fear (驚驚)',
-                        image: 'fear.png',
-                        description: '今天的你是驚驚，感到害怕和不安，試著放鬆一些～'
-                    };
-                } else {
-                    return {
-                        name: 'Disgust (厭厭)',
-                        image: 'disgust.png',
-                        description: '今天的你是厭厭，對一些事情感到厭惡，盡量避開吧！'
-                    };
-                }
-            }
+        function displayCharacterInfo(characterInfo) {
+            const characterName = document.getElementById('character-name');
+            const characterImage = document.getElementById('character-image');
+            const characterDescription = document.getElementById('character-description');
 
-            function displayCharacterInfo(characterInfo) {
-                const characterName = document.getElementById('character-name');
-                const characterImage = document.getElementById('character-image');
-                const characterDescription = document.getElementById('character-description');
+            characterName.textContent = characterInfo.name;
+            characterImage.src = characterInfo.image;
+            characterDescription.textContent = characterInfo.description;
 
-                characterName.textContent = characterInfo.name;
-                characterImage.src = characterInfo.image;
-                characterDescription.textContent = characterInfo.description;
-
-                const characterInfoDiv = document.getElementById('character-info');
-                characterInfoDiv.style.display = 'block';
-            }
-        </script>
-    </body>
+            const characterInfoDiv = document.getElementById('character-info');
+            characterInfoDiv.style.display = 'block';
+        }
+    </script>
+</body>
 </html>
