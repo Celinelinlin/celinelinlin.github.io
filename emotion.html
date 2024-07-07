@@ -19,8 +19,8 @@
         }
         .emotion-wheel {
             position: relative;
-            width: 400px;
-            height: 400px;
+            width: 420px;
+            height: 420px;
             border-radius: 50%;
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -30,12 +30,12 @@
         }
         .emotion-btn {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             display: flex;
             justify-content: center;
@@ -49,22 +49,22 @@
         #disgust { background-color: #32cd32; }
         #anxiety { background-color: #ff69b4; }
 
-        .joy { transform: rotate(0deg) translate(160px) rotate(0deg); }
-        .sadness { transform: rotate(60deg) translate(160px) rotate(-60deg); }
-        .anger { transform: rotate(120deg) translate(160px) rotate(-120deg); }
-        .fear { transform: rotate(180deg) translate(160px) rotate(-180deg); }
-        .disgust { transform: rotate(240deg) translate(160px) rotate(-240deg); }
-        .anxiety { transform: rotate(300deg) translate(160px) rotate(-300deg); }
+        .joy { transform: rotate(0deg) translate(170px) rotate(0deg); }
+        .sadness { transform: rotate(60deg) translate(170px) rotate(-60deg); }
+        .anger { transform: rotate(120deg) translate(170px) rotate(-120deg); }
+        .fear { transform: rotate(180deg) translate(170px) rotate(-180deg); }
+        .disgust { transform: rotate(240deg) translate(170px) rotate(-240deg); }
+        .anxiety { transform: rotate(300deg) translate(170px) rotate(-300deg); }
 
         #emotion-description {
-            margin-top: 40px;
-            font-size: 20px;
+            margin-top: 45px;
+            font-size: 22px;
             text-align: center;
         }
 
         .center-label {
             position: absolute;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             top: 50%;
             left: 50%;
@@ -73,22 +73,22 @@
 
         @media (max-width: 480px) {
             .emotion-wheel {
-                width: 320px;
-                height: 320px;
+                width: 340px;
+                height: 340px;
             }
             .emotion-btn {
-                width: 65px;
-                height: 65px;
-                font-size: 14px;
+                width: 70px;
+                height: 70px;
+                font-size: 15px;
             }
-            .joy { transform: rotate(0deg) translate(130px) rotate(0deg); }
-            .sadness { transform: rotate(60deg) translate(130px) rotate(-60deg); }
-            .anger { transform: rotate(120deg) translate(130px) rotate(-120deg); }
-            .fear { transform: rotate(180deg) translate(130px) rotate(-180deg); }
-            .disgust { transform: rotate(240deg) translate(130px) rotate(-240deg); }
-            .anxiety { transform: rotate(300deg) translate(130px) rotate(-300deg); }
+            .joy { transform: rotate(0deg) translate(135px) rotate(0deg); }
+            .sadness { transform: rotate(60deg) translate(135px) rotate(-60deg); }
+            .anger { transform: rotate(120deg) translate(135px) rotate(-120deg); }
+            .fear { transform: rotate(180deg) translate(135px) rotate(-180deg); }
+            .disgust { transform: rotate(240deg) translate(135px) rotate(-240deg); }
+            .anxiety { transform: rotate(300deg) translate(135px) rotate(-300deg); }
             #emotion-description {
-                font-size: 18px;
+                font-size: 20px;
             }
         }
     </style>
@@ -144,7 +144,7 @@
             
             descriptionElement.innerHTML = `
                 <h2>${emotionData.name}</h2>
-                <img src="${emotionData.image}" alt="${emotionData.name}" width="100">
+                <img src="${emotionData.image}" alt="${emotionData.name}" width="110">
                 <p>${emotionData.description}</p>
             `;
         }
