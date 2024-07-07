@@ -19,8 +19,8 @@
         }
         .emotion-wheel {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             border-radius: 50%;
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -30,12 +30,12 @@
         }
         .emotion-btn {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
             display: flex;
             justify-content: center;
@@ -49,22 +49,22 @@
         #disgust { background-color: #32cd32; }
         #anxiety { background-color: #ff69b4; }
 
-        .joy { transform: rotate(0deg) translate(120px) rotate(0deg); }
-        .sadness { transform: rotate(60deg) translate(120px) rotate(-60deg); }
-        .anger { transform: rotate(120deg) translate(120px) rotate(-120deg); }
-        .fear { transform: rotate(180deg) translate(120px) rotate(-180deg); }
-        .disgust { transform: rotate(240deg) translate(120px) rotate(-240deg); }
-        .anxiety { transform: rotate(300deg) translate(120px) rotate(-300deg); }
+        .joy { transform: rotate(0deg) translate(140px) rotate(0deg); }
+        .sadness { transform: rotate(60deg) translate(140px) rotate(-60deg); }
+        .anger { transform: rotate(120deg) translate(140px) rotate(-120deg); }
+        .fear { transform: rotate(180deg) translate(140px) rotate(-180deg); }
+        .disgust { transform: rotate(240deg) translate(140px) rotate(-240deg); }
+        .anxiety { transform: rotate(300deg) translate(140px) rotate(-300deg); }
 
         #emotion-description {
-            margin-top: 20px;
-            font-size: 16px;
+            margin-top: 30px;
+            font-size: 18px;
             text-align: center;
         }
 
         .center-label {
             position: absolute;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             top: 50%;
             left: 50%;
@@ -73,20 +73,20 @@
 
         @media (max-width: 480px) {
             .emotion-wheel {
-                width: 250px;
-                height: 250px;
+                width: 300px;
+                height: 300px;
             }
             .emotion-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 10px;
+                width: 60px;
+                height: 60px;
+                font-size: 12px;
             }
-            .joy { transform: rotate(0deg) translate(100px) rotate(0deg); }
-            .sadness { transform: rotate(60deg) translate(100px) rotate(-60deg); }
-            .anger { transform: rotate(120deg) translate(100px) rotate(-120deg); }
-            .fear { transform: rotate(180deg) translate(100px) rotate(-180deg); }
-            .disgust { transform: rotate(240deg) translate(100px) rotate(-240deg); }
-            .anxiety { transform: rotate(300deg) translate(100px) rotate(-300deg); }
+            .joy { transform: rotate(0deg) translate(120px) rotate(0deg); }
+            .sadness { transform: rotate(60deg) translate(120px) rotate(-60deg); }
+            .anger { transform: rotate(120deg) translate(120px) rotate(-120deg); }
+            .fear { transform: rotate(180deg) translate(120px) rotate(-180deg); }
+            .disgust { transform: rotate(240deg) translate(120px) rotate(-240deg); }
+            .anxiety { transform: rotate(300deg) translate(120px) rotate(-300deg); }
         }
     </style>
 </head>
@@ -141,7 +141,7 @@
             
             descriptionElement.innerHTML = `
                 <h2>${emotionData.name}</h2>
-                <img src="${emotionData.image}" alt="${emotionData.name}" width="80">
+                <img src="${emotionData.image}" alt="${emotionData.name}" width="90">
                 <p>${emotionData.description}</p>
             `;
         }
