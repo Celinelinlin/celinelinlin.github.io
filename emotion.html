@@ -69,18 +69,6 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-
-        #liff-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -94,9 +82,6 @@
         <button class="emotion-btn anxiety" id="anxiety" onclick="showEmotion('anxiety')">焦慮</button>
     </div>
     <div id="emotion-description"></div>
-
-    <button id="liff-button">打開 LIFF</button>
-
     <script>
         const emotions = {
             joy: {
@@ -139,15 +124,6 @@
                 <p>${emotionData.description}</p>
             `;
         }
-
-        document.getElementById('liff-button').addEventListener('click', function() {
-            // Replace with your LIFF URL
-            const liffUrl = 'https://your-liff-url.com';
-            liff.openWindow({
-                url: liffUrl,
-                external: true
-            });
-        });
     </script>
 </body>
 </html>
