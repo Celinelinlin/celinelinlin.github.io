@@ -125,6 +125,23 @@
                 <p>${emotionData.description}</p>
             `;
         }
+
+        // Initialize LIFF
+        async function initializeLiff() {
+            try {
+                await liff.init({ liffId: 'YOUR_LIFF_ID' });
+                const isLoggedIn = await liff.isLoggedIn();
+                if (!isLoggedIn) {
+                    await liff.login();
+                }
+                const profile = await liff.getProfile();
+                console.log(profile);
+            } catch (error) {
+                console.error('LIFF initialization failed', error);
+            }
+        }
+
+        initializeLiff();
     </script>
 </body>
 </html>
