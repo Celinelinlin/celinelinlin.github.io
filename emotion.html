@@ -8,19 +8,19 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
             background-color: #f0f0f0;
+            box-sizing: border-box;
         }
         .emotion-wheel {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
+            position: relative;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -30,12 +30,12 @@
         }
         .emotion-btn {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             display: flex;
             justify-content: center;
@@ -49,26 +49,44 @@
         #disgust { background-color: #32cd32; }
         #anxiety { background-color: #ff69b4; }
 
-        .joy { transform: rotate(0deg) translate(180px) rotate(0deg); }
-        .sadness { transform: rotate(60deg) translate(180px) rotate(-60deg); }
-        .anger { transform: rotate(120deg) translate(180px) rotate(-120deg); }
-        .fear { transform: rotate(180deg) translate(180px) rotate(-180deg); }
-        .disgust { transform: rotate(240deg) translate(180px) rotate(-240deg); }
-        .anxiety { transform: rotate(300deg) translate(180px) rotate(-300deg); }
+        .joy { transform: rotate(0deg) translate(120px) rotate(0deg); }
+        .sadness { transform: rotate(60deg) translate(120px) rotate(-60deg); }
+        .anger { transform: rotate(120deg) translate(120px) rotate(-120deg); }
+        .fear { transform: rotate(180deg) translate(120px) rotate(-180deg); }
+        .disgust { transform: rotate(240deg) translate(120px) rotate(-240deg); }
+        .anxiety { transform: rotate(300deg) translate(120px) rotate(-300deg); }
 
         #emotion-description {
-            margin-top: 900px;
-            font-size: 18px;
+            margin-top: 20px;
+            font-size: 16px;
             text-align: center;
         }
 
         .center-label {
             position: absolute;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 480px) {
+            .emotion-wheel {
+                width: 250px;
+                height: 250px;
+            }
+            .emotion-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 10px;
+            }
+            .joy { transform: rotate(0deg) translate(100px) rotate(0deg); }
+            .sadness { transform: rotate(60deg) translate(100px) rotate(-60deg); }
+            .anger { transform: rotate(120deg) translate(100px) rotate(-120deg); }
+            .fear { transform: rotate(180deg) translate(100px) rotate(-180deg); }
+            .disgust { transform: rotate(240deg) translate(100px) rotate(-240deg); }
+            .anxiety { transform: rotate(300deg) translate(100px) rotate(-300deg); }
         }
     </style>
 </head>
@@ -121,25 +139,11 @@
             const emotionData = emotions[emotion];
             const descriptionElement = document.getElementById('emotion-description');
             
-            // Clear previous content
-            descriptionElement.innerHTML = '';
-            
-            // Create elements for the new content
-            const heading = document.createElement('h2');
-            heading.textContent = emotionData.name;
-
-            const image = document.createElement('img');
-            image.src = emotionData.image;
-            image.alt = emotionData.name;
-            image.width = 100;
-
-            const paragraph = document.createElement('p');
-            paragraph.textContent = emotionData.description;
-
-            // Append new content to the description element
-            descriptionElement.appendChild(heading);
-            descriptionElement.appendChild(image);
-            descriptionElement.appendChild(paragraph);
+            descriptionElement.innerHTML = `
+                <h2>${emotionData.name}</h2>
+                <img src="${emotionData.image}" alt="${emotionData.name}" width="80">
+                <p>${emotionData.description}</p>
+            `;
         }
     </script>
 </body>
